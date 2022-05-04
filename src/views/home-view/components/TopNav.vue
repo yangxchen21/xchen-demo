@@ -59,6 +59,8 @@ export default {
   display: flex;
   align-items: center;
   padding: 8px 40px;
+  background-color: white;
+  border-bottom: 1px solid lightslategrey;
 }
 .nav_main{
   height: 36px;
