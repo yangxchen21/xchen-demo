@@ -8,7 +8,7 @@ export function login(data){
     })
 }
 export function getInfo(token){
-    console.log('11')
+
     return request({
         url:'/user/info',
         method:'get',

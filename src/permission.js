@@ -4,7 +4,7 @@ import store from "@/store";
 const whiteList=['/']
 router.beforeEach((to,from,next)=>{
     const hasToken=getToken()
-    console.log(`test:${hasToken}`)
+
 
     if(to.path==='/login'){
         if(hasToken){
@@ -16,14 +16,14 @@ router.beforeEach((to,from,next)=>{
             next()
         }
     }else{
-        console.log(111)
+
         if(hasToken){
             store.dispatch('userModule/getInfo').then(
                 ()=>{
                     next()}
             )
         }else{
-            if (whiteList.indexOf(to.path) !== -1) {
+            if (whiteList.indexOf(to.path) !== -1||to.path.includes('/article')) {
                 // in the free login whitelist, go directly
                 next()
             } else {

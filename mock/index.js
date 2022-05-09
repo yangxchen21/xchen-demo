@@ -1,16 +1,20 @@
 import Mock from 'mockjs'
 const Random=require('mockjs').Random
 
-
+//用户登录
 Mock.mock('/user/login','post',{
     token:'@natural'
 })
+//获取用户信息
 Mock.mock(RegExp("/user/info"+".*"),'get',{
-    username:'@cname'
+    username:'@cname',
+    avatar:Random.image('24x24',Random.hex())
 })
+//用户登出
 Mock.mock("/user/logout",'post',{
     res:'ok'
 })
+//获取文章列表
 Mock.mock("/article/list","post",{
     "list|7-25":[
         {
@@ -22,7 +26,25 @@ Mock.mock("/article/list","post",{
             'favorite':'@integer(0,1000)',
             'comment':'@integer(0,1000)',
             'view':'@integer(0,1000)',
-            'avatar':Random.image('52x52','#80a2f1','avatar')
+            'avatar':Random.image('52x52',Random.hex(),'avatar')
         }
     ]
+})
+//获取文章详情
+Mock.mock(RegExp('/article/detail'+".*"),'get',{
+    'date':'@date("yyyy-MM-dd")',
+    'author':'@cname',
+    'title':'@ctitle',
+    'content':'@cparagraph(50,150)',
+    'favorite':'@integer(0,1000)',
+    'comment':'@integer(0,1000)',
+    'view':'@integer(0,1000)',
+    'avatar':Random.image('52x52',Random.hex(),'avatar')
+})
+//获取文章评论列表
+Mock.mock(RegExp('/article/comments'+'.*'),'get',{
+    'author':'@cname',
+    'date':'@date("yyyy-MM-dd")',
+    'content':'@cparagraph(1,3)',
+    'avatar':Random.image('52x52',Random.hex(),'avatar')
 })

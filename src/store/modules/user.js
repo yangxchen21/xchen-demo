@@ -5,7 +5,8 @@ import {getInfo, login, logout} from "@/apis/user";
 const user={
     state:{
         username:'',
-        token:getToken()
+        token:getToken(),
+        avatar:null
     },
     getters:{
 
@@ -16,6 +17,9 @@ const user={
         },
         SET_NAME:(state,name)=>{
             state.username=name
+        },
+        SET_AVATAR:(state,avatar)=>{
+            state.avatar=avatar
         }
     },
     actions:{
@@ -37,10 +41,11 @@ const user={
         getInfo({commit,state}){
             return new Promise((resolve,reject)=>{
                 getInfo(state.token).then(response=>{
-                    console.log(response)
+
                     const {data}=response
-                    const {username}=data
+                    const {username,avatar}=data
                     commit('SET_NAME',username)
+                    commit('SET_AVATAR',avatar)
                     resolve(data)
                 }).catch(error => {
                     reject(error)

@@ -2,7 +2,7 @@
   <div class="post-list">
     <article v-for="item in postList" :key="item.id" class="post-item">
       <div class="post-item-body">
-        <a class="post-item-title" href="">{{item.title}}</a>
+        <a class="post-item-title" @click="handleClickTitle(item.id)">{{item.title}}</a>
         <p class="post-item-summary"><img :src="item.avatar" class="post-item-avatar">{{item.content}}</p>
         <footer class="post-item-footer">
           <a href=""><span style="color:#0053a1;">{{item.author}}</span></a>
@@ -29,13 +29,18 @@ export default {
       postList:[]
     }
   },
+  methods:{
+    handleClickTitle(id){
+      console.log(id)
+      this.$router.push(`/article/${id}`)
+    }
+  },
   components:[
 
   ],
   created() {
     getArticleList().then(response=>{
       this.postList=response.data.list
-      console.log(response.data.list)
     })
   }
 }

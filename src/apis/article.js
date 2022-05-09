@@ -6,3 +6,17 @@ export function getArticleList(){
         method:'post',
     })
 }
+export function getArticleDetail(articleId){
+    return request({
+        url:'/article/detail',
+        method:'get',
+        params:{articleId}
+    })
+}
+export function getArticleComments(articleId){
+    return request({
+        url:'/article/comments',
+        methods:'get',
+        params:{articleId},
+    })
+}
