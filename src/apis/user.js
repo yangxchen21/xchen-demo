@@ -1,5 +1,6 @@
 
 import request from "@/utils/request";
+import {getToken} from "@/utils/auth";
 export function login(data){
     return request({
         url:'/user/login',
@@ -19,5 +20,15 @@ export function logout(){
     return request({
         url:'/user/logout',
         method:'post',
+    })
+}
+export function doComment(data){
+    return request({
+        url:'/user/comment',
+        headers:{
+            "token":getToken()
+        },
+        method:'post',
+        data
     })
 }

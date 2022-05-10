@@ -13,17 +13,12 @@
         <hr>
         <div class="arti-footer">
             <a title=""><span class="iconfont icon-dianzan"></span><span style="margin-left: 5px">{{article.favorite}}</span></a>
-            <a title=""><span class="iconfont icon-pinglun"></span><span style="margin-left: 5px"> {{article.comment}}</span></a>
+            <a title="" @click="handleClickComment" ><span class="iconfont icon-pinglun"></span><span style="margin-left: 5px"> {{article.comment}}</span></a>
             <a title=""><span class="iconfont icon-icon-"></span><span style="margin-left: 5px">{{article.view }}</span></a>
         </div>
       </el-card>
-      <el-card class="card"> 评论区
-        <ul>
-          <li>qwqe
-          </li>
-          <li>qwqe
-          </li>
-        </ul>
+      <el-card class="card"  id="comments-area">
+        <comments-list :articleId="id" ></comments-list>
       </el-card>
     </div>
   </div>
@@ -33,23 +28,30 @@
 <script>
 import TopNav from "@/views/home-view/components/TopNav";
 import {getArticleDetail} from "@/apis/article";
+import CommentsList from "@/views/article-view/components/CommentsList";
 
 export default {
   name: "ArticleView",
   created(){
     getArticleDetail(this.id).then(response=>{
       this.article=response.data
-      console.log(this.article)
+
     })
   },
   data(){
     return{
-      article:{}
+      article:{},
+      isComment:false,
     }
   },
+  methods:{
+    handleClickComment(){
 
+      document.getElementById('comments-area').scrollIntoView()
+    }
+  },
   components: {
-    TopNav
+    TopNav,CommentsList
   },
   props:['id']
 
@@ -71,7 +73,7 @@ ul{
 }
 .card{
   width: 1000px;
-  margin: 5px;
+  margin: 10px;
 }
 .arti-title{
   font-size: 18px;

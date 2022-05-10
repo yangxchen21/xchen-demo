@@ -9,7 +9,7 @@ router.beforeEach((to,from,next)=>{
     if(to.path==='/login'){
         if(hasToken){
             store.dispatch('userModule/getInfo').then(()=>{
-                    next('/')
+                    next()
                 }
             )
         }else{

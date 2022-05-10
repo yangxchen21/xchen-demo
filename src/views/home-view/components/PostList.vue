@@ -31,7 +31,7 @@ export default {
   },
   methods:{
     handleClickTitle(id){
-      console.log(id)
+
       this.$router.push(`/article/${id}`)
     }
   },

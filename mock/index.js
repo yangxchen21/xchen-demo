@@ -43,8 +43,14 @@ Mock.mock(RegExp('/article/detail'+".*"),'get',{
 })
 //获取文章评论列表
 Mock.mock(RegExp('/article/comments'+'.*'),'get',{
-    'author':'@cname',
-    'date':'@date("yyyy-MM-dd")',
-    'content':'@cparagraph(1,3)',
-    'avatar':Random.image('52x52',Random.hex(),'avatar')
+    "list|5-35":[{
+        'author':'@cname',
+        'date':'@date("yyyy-MM-dd")',
+        'content':'@cparagraph(1,10)',
+        'avatar':Random.image('52x52',Random.hex(),'avatar')
+    }]
+})
+//用户发表评论
+Mock.mock('/user/comment','post',{
+    res:'OK'
 })
