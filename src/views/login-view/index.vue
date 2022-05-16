@@ -40,10 +40,11 @@ export default {
   },
   methods:{
     handleClickLogin(){
+      console.log('click-login')
       this.$store.dispatch('userModule/login',this.userInfo)
       .then(()=>{
 
-        this.$router.push({path:'/'})
+        this.$router.go(-1)
       })
     },
 

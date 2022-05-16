@@ -20,3 +20,11 @@ export function getArticleComments(articleId){
         params:{articleId},
     })
 }
+//获取子评论
+export function getChildComments(commentId){
+    return request({
+        url:'/article/childcomment',
+        methods:'get',
+        params:{commentId}
+    })
+}

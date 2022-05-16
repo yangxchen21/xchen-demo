@@ -22,10 +22,22 @@ export function logout(){
         method:'post',
     })
 }
+//发表评论
 export function doComment(data){
     return request({
         url:'/user/comment',
         headers:{
+            "token":getToken()
+        },
+        method:'post',
+        data
+    })
+}
+//发表回复
+export function doReply(data){
+    return request({
+        url:'/user/reply',
+        header:{
             "token":getToken()
         },
         method:'post',

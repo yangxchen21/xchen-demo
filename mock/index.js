@@ -47,10 +47,26 @@ Mock.mock(RegExp('/article/comments'+'.*'),'get',{
         'author':'@cname',
         'date':'@date("yyyy-MM-dd")',
         'content':'@cparagraph(1,10)',
-        'avatar':Random.image('52x52',Random.hex(),'avatar')
+        'avatar':Random.image('52x52',Random.hex(),'avatar'),
+        'id':'@increment(1)'
     }]
 })
 //用户发表评论
 Mock.mock('/user/comment','post',{
     res:'OK'
+})
+//用户进行回复
+Mock.mock('/user/reply','post',{
+    res:'OK'
+})
+//获取子评论
+Mock.mock(RegExp('/article/childcomment'+'.*'),'get',{
+    "list|3-25":[{
+        'id':'@increment(1)',
+        "asker":'@cname',
+        "replier":'@cname',
+        'date':'@date("yyyy-MM-dd")',
+        'content':'@cparagraph(1,6)',
+        'avatar':Random.image('24x24',Random.hex(),'avatar')
+    }]
 })
