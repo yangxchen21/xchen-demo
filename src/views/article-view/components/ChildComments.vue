@@ -10,7 +10,7 @@
           <div class="child-comment-content">{{item.content}}</div>
           <div class="child-comment-footer">点赞 <a @click="handleClickReplyText(item)">回复</a></div>
           <div class="comment-reply-area" v-if="item.isReplid">
-            <el-input v-model="replyText" placeholder="回复" :autosize="{minRows:1}" type="textarea" />
+            <el-input v-model="replyText" placeholder="回复" :autosize="{minRows:1}" type="textarea" class="comment-reply-input"/>
             <el-button type="primary" style="width: 100px" @click="handleClickReplyButton(item)">回复</el-button>
           </div>
         </div>
@@ -83,5 +83,21 @@ li{
 }
 .comment-reply-area{
   display: flex;
+}
+.comment-reply-input{
+  width: 600px;
+  margin:0 10px;
+}
+.child-comment-item{
+  margin:15px 5px
+}
+.child-comment-footer{
+  text-align: right;
+}
+.child-comment-title{
+  margin-bottom: 0.5rem;
+}
+a{
+  cursor: pointer;
 }
 </style>

@@ -18,7 +18,7 @@
     </div>
     <div class="comment-footer"><a>点赞</a> <a @click="handleClickReplyText(item)">回复</a></div>
     <div class="comment-reply-area" v-if="item.isReplid">
-      <el-input v-model="replyText" placeholder="回复" :autosize="{minRows:1}" type="textarea" />
+      <el-input v-model="replyText" placeholder="回复" :autosize="{minRows:1}" type="textarea" class="comment-reply-input"/>
       <el-button type="primary" style="width: 100px" @click="handleClickReplyButton(item,index)">回复</el-button>
     </div>
     <child-comments :commentId="item.id" ref="childComments" :index="index"></child-comments>
@@ -100,6 +100,10 @@ export default {
 .comment-reply-area{
   display: flex;
 }
+.comment-reply-input{
+  width: 700px;
+  margin-right: 10px;
+}
 .comment-input-area{
   display: flex;
 }
@@ -133,5 +137,8 @@ img{
 }
 .comment-content{
   grid-area: content;
+}
+a{
+  cursor: pointer;
 }
 </style>
